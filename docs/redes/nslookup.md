@@ -1,9 +1,13 @@
-# Comando nslookup
+# NSLookup
 
 ## 1. Introdução
 O **nslookup** (“Name Server Lookup”) é uma ferramenta utilizada para interagir com servidores DNS e realizar consultas sobre domínios, endereços IP e outros registros DNS.
 
 Este comando está disponível em sistemas Windows, Linux e macOS, sendo amplamente utilizado para testes e diagnósticos de problemas de resolução de nomes na rede.
+
+!!! tip
+Se você precisa resolver problemas de DNS rapidamente, o **nslookup** é uma ferramenta leve e eficiente, ideal para diagnosticar falhas de resolução de nomes.
+!!!
 
 ## 2. Objetivo
 O objetivo principal do **nslookup** é permitir que administradores de sistemas e redes consultem informações sobre servidores DNS e domínios, facilitando o diagnóstico de problemas de conectividade e configuração.
@@ -31,6 +35,10 @@ nslookup exemplo.com
 
 Isso retorna informações sobre o servidor DNS que respondeu à consulta e o endereço IP do domínio.
 
+!!! warning
+Se você não obtiver resposta, pode ser que o servidor DNS esteja inacessível ou que o domínio não tenha um registro válido.
+!!!
+
 ### 4.2. Modo Interativo
 O **nslookup** pode ser executado em modo interativo, permitindo várias consultas sem sair do comando:
 ```sh
@@ -41,6 +49,10 @@ nslookup
 > exit
 ```
 Neste modo, pode-se alterar parâmetros e realizar consultas sucessivas sem precisar reiniciar o comando.
+
+!!! tip
+O modo interativo é útil para explorar diferentes tipos de registros DNS sem precisar digitar o comando completo repetidamente.
+!!!
 
 ### 4.3. Tipos de Registros DNS
 O **nslookup** permite consultar diferentes tipos de registros DNS utilizando a opção `set type`:
@@ -56,12 +68,20 @@ O **nslookup** permite consultar diferentes tipos de registros DNS utilizando a 
 | `set type=SOA`   | Informações de autoridade do domínio |
 | `set type=TXT`   | Registros de texto (SPF, DKIM, etc.) |
 
+!!! warning
+Certifique-se de consultar registros adequados ao seu objetivo, pois alguns domínios podem não fornecer certas informações, como registros TXT ou PTR.
+!!!
+
 ### 4.4. Consultas a um Servidor DNS Específico
 Para consultar um servidor DNS específico, utilize a seguinte sintaxe:
 ```sh
 nslookup exemplo.com 8.8.8.8
 ```
 Isso consulta o domínio `exemplo.com` usando o servidor DNS do Google (`8.8.8.8`).
+
+!!! tip
+Consultar diferentes servidores DNS pode ajudar a identificar problemas de propagação ou caches desatualizados.
+!!!
 
 ### 4.5. Consulta Reversa (PTR)
 Para descobrir o domínio associado a um endereço IP:
@@ -77,6 +97,10 @@ Se um domínio não estiver resolvendo corretamente, pode-se testar diferentes s
 nslookup exemplo.com 1.1.1.1
 ```
 Se um servidor DNS retorna informações corretas e outro não, pode haver um problema de propagação DNS.
+
+!!! warning
+Se os servidores DNS diferentes retornarem respostas inconsistentes, pode ser um sinal de um problema de cache ou propagação DNS ainda incompleta.
+!!!
 
 ### 5.2. Verificação de Registros MX (E-mail)
 Para verificar os servidores de e-mail de um domínio:
@@ -97,6 +121,10 @@ Para verificar registros TXT (SPF, DKIM, etc.), execute:
 nslookup -type=TXT exemplo.com
 ```
 Isso é útil para verificar políticas de segurança de e-mail.
+
+!!! tip
+Os registros TXT podem conter informações valiosas para a segurança de e-mails, como SPF e DKIM, ajudando a prevenir phishing e spoofing.
+!!!
 
 ## 6. Referências
 - [Documentação Oficial Microsoft](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup)
