@@ -98,49 +98,49 @@ Se houver perda de pacotes, significa que algum problema pode estar ocorrendo na
 
 1. **Verifique a conectividade com um site confiável**:
 
-   ```bash
-   ping 8.8.8.8
-   ```
+```bash
+ping 8.8.8.8
+```
 
-   !!! tip
-   Utilize um servidor DNS confiável como `8.8.8.8` (Google) ou `1.1.1.1` (Cloudflare) para testar a conectividade com a internet.
+!!! tip
+    Utilize um servidor DNS confiável como `8.8.8.8` (Google) ou `1.1.1.1` (Cloudflare) para testar a conectividade com a internet.
 
 2. **Se houver falhas, verifique se o host está acessível por outros meios**:
 
-   ```bash
-   traceroute google.com
-   ```
+```bash
+traceroute google.com
+```
 
-   !!! tip
-   O comando `traceroute` ajuda a diagnosticar onde pode estar ocorrendo um problema na rota até o destino.
+!!! tip
+    O comando `traceroute` ajuda a diagnosticar onde pode estar ocorrendo um problema na rota até o destino.
 
 3. **Caso o ****`ping`**** funcione para um IP, mas não para um domínio, pode ser um problema de DNS.**
 
-   ```bash
-   nslookup google.com
-   ```
+```bash
+nslookup google.com
+```
 
-   !!! warning
-   Se o comando `nslookup` retornar um erro, pode haver problemas no seu servidor DNS configurado. Verifique suas configurações de rede:
+!!! warning
+    Se o comando `nslookup` retornar um erro, pode haver problemas no seu servidor DNS configurado. Verifique suas configurações de rede:
 
-   ```bash
-   cat /etc/resolv.conf
-   ```
+```bash
+cat /etc/resolv.conf
+```
    
-   Se o arquivo não contiver servidores DNS corretos, tente adicioná-los manualmente.
+Se o arquivo não contiver servidores DNS corretos, tente adicioná-los manualmente.
 
-   ```bash
-   echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf
-   ```
+```bash
+echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf
+```
 
 4. **Utilize o ****`ping -c N`**** para evitar execuções infinitas.**
 
-   ```bash
-   ping -c 5 google.com
-   ```
+```bash
+ping -c 5 google.com
+```
 
-   !!! warning
-   Se não definir um limite de pacotes, o `ping` continuará sendo executado indefinidamente. Isso pode ser inconveniente e até causar bloqueios em algumas redes.
+!!! warning
+    Se não definir um limite de pacotes, o `ping` continuará sendo executado indefinidamente. Isso pode ser inconveniente e até causar bloqueios em algumas redes.
 
 ## 6. Referências
 
